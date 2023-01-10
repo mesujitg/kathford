@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<title>JavaScript</title>
+		<meta charset="UTF-8" />
+		
+		<style>
+			.mbox
+			{
+				border: 5px solid red;
+				background: blue;
+				color: white;
+				margin: 10px;
+				padding: 10px;
+				text-align: center;
+				width: 100px;
+				float: left;
+			}
+		</style>
+	</head>
+	
+	<body>
+	
+		<!--
+		JavaScript can manipulate
+		1. Content
+		2. attribute
+		3. style
+		4. structure(DOM)
+		in HTML file after loading in user action.
+		-->
+		<h1 id="test" onclick="myFunction()">
+		JavaScript
+		</h1>
+		
+		<h2>Test</h2>
+		
+		<!--
+		Character Entity/Special Character
+		&copy; &reg; &nbsp; &hearts; &pound; &amp; &lt; &gt;
+		-->
+		
+		<form name="login-frm">
+			<p>
+				<input type="text" name="num1" placeholder="Number 1" />
+			</p>
+			
+			<p>
+				<label><input type="radio" name="op" value="+" /> +</label>
+				<label><input type="radio" name="op" value="-" /> -</label>
+				<label><input type="radio" name="op" value="*" /> &times;</label>
+				<label><input type="radio" name="op" value="/" /> &div;</label>
+			</p>
+			
+			<p>
+				<input type="text" name="num2" placeholder="Number 2" />
+			</p>
+			
+			<p>
+				<input type="button" value="Calculate" onclick="onSubmit()" />
+			</p>
+			
+			<p>
+				<input type="button" value="Multiplication Table" 
+					onclick="mulTbl()" />
+			</p>
+			
+			<p>
+				<input type="text" name="result" readonly />
+			</p>
+		</form>
+		
+		<div id="output">
+		
+		</div>
+		
+		
+		<script>
+			let a = 5;
+			let b = [5];
+			c = 10;
+			let d = 'Ram';
+			/*
+			alert('Welcome');
+			document.write('Welcome');
+			console.log('Welcome');
+			*/
+			
+			function myFunction()
+			{
+				document.getElementById('test').innerHTML = 'Welcome';
+				document.getElementById('test').align = 'Center';
+				//element.setAttribute('src', 'image/imagename.jpg');
+				document.getElementById('test').style.color = 'red';
+				document.getElementById('test').innerHTML = 'Welcome to <i>JavaScript</i>';
+			}
+			
+			/*
+			selectors
+			----------
+			document.getElementById()
+			document.getElementsByTagName()
+			document.getElementsByClassName()
+			document.getElementsByName()
+			document.forms[][]
+			*/
+			
+			
+			function onSubmit()
+			{
+				n1 = Number(document.forms['login-frm']['num1'].value);
+				n2 = Number(document.forms['login-frm']['num2'].value);
+				op = document.forms['login-frm']['op'].value;
+				
+				/*
+				if(op=='+') {
+					alert(n1+n2);
+				}
+				else if(op=='-') {
+					alert(n1-n2);
+				}
+				else if(op=='*') {
+					alert(n1*n2);
+				}
+				else if(op=='/') {
+					alert(n1/n2);
+				}
+				else {
+					alert('Invalid Operation');
+				}
+				*/
+				
+				result = 0;
+				switch(op)
+				{
+					case '+': result = n1+n2;
+					break;
+					case '-': result = n1-n2;
+					break;
+					case '*': result = n1*n2;
+					break;
+					case '/': result = n1/n2;
+					break;
+					default: result = 'Invalid Operation';
+				}
+				document.forms['login-frm']['result'].value = result;
+			}
+			
+			function mulTbl()
+			{
+				n1 = Number(document.forms['login-frm']['num1'].value);
+				output = '';
+				//output = '<table border="1"><tr>';
+				
+				for(i=1; i<=10; i++) {
+					//output += '<td>'+ n1+ 'x'+ i + ' = '+ n1*i + '</td>';
+					
+					output += '<div class="mbox">'+ n1+ 'x'+ i + ' = '+ n1*i + '</div>'
+				}
+				
+				//output += '</tr></table>';
+				
+				document.getElementById('output').innerHTML = output;
+				
+				/*
+				j=1;
+				while(j<=10){
+					console.log(n1+ 'x'+ i + ' = '+ n1*i);
+					j++;
+				}
+				*/
+			}
+			
+			/* 
+			conditional statements
+			1. if(){}
+			2. if(){} 
+				else if(){}
+				else{}
+			3. switch(){}
+			
+			
+			looping statements
+			1. for(initialization;condition;increment/decrement){}
+			2. initialization
+				while(condition)
+				{
+				// executable code
+				increment/decrement
+				}
+			*/
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,46 @@
+header
+{
+	height: 100px;
+	background: blue;
+}
+
+nav
+{
+	background: darkblue;
+}
+
+#slider
+{
+	background: blue;
+}
+#carouselExampleCaptions
+{
+	padding: 0;
+}
+.carousel-item img
+{
+	height: 400px;
+}
+.carousel-caption
+{
+	background: rgba(6, 40, 178, 0.5);
+	/* opacity: 0.5; */
+	display: none !important;
+}
+
+#display, #featured
+{
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+#display .card img, #featured .card img
+{
+	height: 250px;
+}
+
+footer
+{
+	height: 30px;
+	background: blue;
+}

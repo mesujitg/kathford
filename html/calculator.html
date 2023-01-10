@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<title>JavaScript</title>
+		<meta charset="UTF-8" />
+	</head>
+	
+	<body>
+		
+		<div id="main">
+			<table border="1">
+				<tr>
+					<th colspan="4">
+						<input type="text" id="display_exp" readonly 
+							style="text-align: right; height: 10px; background: #eeeeee;"/>
+					</th>
+				</tr>
+				<tr>
+					<th colspan="4">
+						<input type="text" id="display" readonly 
+							style="text-align: right;" placeholder="0" />
+					</th>
+				</tr>
+				<tr>
+					<th><input type="button" value="7" onclick="getValue(this.value)" /></th>
+					<th><input type="button" value="8" onclick="getValue(this.value)" /></th>
+					<th><input type="button" value="9" onclick="getValue(this.value)" /></th>
+					<th><input type="button" value="/" onclick="getValue(this.value)" /></th>
+				</tr>
+				
+				<tr>
+					<th><input type="button" value="4" onclick="getValue(this.value)" /></th>
+					<th><input type="button" value="5" onclick="getValue(this.value)" /></th>
+					<th><input type="button" value="6" onclick="getValue(this.value)" /></th>
+					<th><input type="button" value="x" onclick="getValue(this.value)" /></th>
+				</tr>
+				
+				<tr>
+					<th><input type="button" value="1" onclick="getValue(this.value)" /></th>
+					<th><input type="button" value="2" onclick="getValue(this.value)" /></th>
+					<th><input type="button" value="3" onclick="getValue(this.value)" /></th>
+					<th><input type="button" value="-" onclick="getValue(this.value)" /></th>
+				</tr>
+				
+				<tr>
+					<th><input type="button" value="c" onclick="getValue(this.value)" /></th>
+					<th><input type="button" value="0" onclick="getValue(this.value)" /></th>
+					<th><input type="button" value="=" onclick="getValue(this.value)" /></th>
+					<th><input type="button" value="+" onclick="getValue(this.value)" /></th>
+				</tr>
+			</table>
+		</div>
+		
+		
+		<script>
+			n1 = 0;
+			n2 = 0;
+			op = '';
+			dis_num = '';
+			
+		
+			function getValue(val)
+			{
+				document.getElementById('display_exp').value += val;
+				display = document.getElementById('display');
+				if (val == 'c') {
+					dis_num = '';
+					display.value = '';
+				}
+				else if (val=='+' || val=='-' || val=='x' || val=='/') {
+					n1 = Number(display.value);
+					op = val;
+					dis_num = '';
+					//display.value = '';
+				}
+				else if (val == '=') {
+					n2 = Number(display.value);
+					display.value = calculate(n1, n2, op);
+					dis_num = '';
+				}
+				else {
+					if (dis_num == '' && val == '0') {
+						//
+					}
+					else {
+						dis_num += val;
+						display.value = dis_num;
+					}
+				}
+				
+			}
+			
+			function calculate(n1, n2, op)
+			{
+				switch(op) {
+					case '+': return n1+n2;
+					break;
+					case '-': return n1-n2;
+					break;
+					case 'x': return n1*n2;
+					break;
+					case '/': return n1/n2;
+					break;
+					default: return 0;
+				}
+			}
+			
+		</script>
+		
+	</body>
+	
+</html>

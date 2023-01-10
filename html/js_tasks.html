@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<title>JavaScript</title>
+		<meta charset="UTF-8" />
+	</head>
+	
+	<body>
+		
+		<div id="main">
+			<p id="qn"></p>
+			<form id="opt" name="opt-form"></form>
+			<p>
+				<button type="button" onclick="prev()">Prev</button>
+				<button type="button" onclick="next()">Next</button>
+			</p>
+			<button type="button" onclick="result()">Submit</button>
+		</div>
+		
+		<script>
+			questions = [
+				'What is area of Nepal?', 
+				'What is the height of mount everest?', 
+				'Who is first prime minister of nepal?', 
+				'Pupulation of Nepal is:', 
+				'First Nepali Movie is:'
+			];
+
+			options = [
+				['147181 sq km', '181147 sq km', '174818 sq km', '247181 sq km'],
+				['7747 m', '7848 m', '8848 m', '4484 m'],
+				['BP Koirala', 'Bhimsen Thapa', 'Kalu Pandey', 'Manmohan Adhikari'],
+				['39178900', '29178900', '49178900', '19178900'],
+				['Deuta', 'Xyz', 'Abc', 'Aama']
+			];
+
+			answers = ['147181 sq km', '8848 m', 'Bhimsen Thapa', 
+						'29178900', 'Aama'];
+			
+			qn_no = 0;
+			choices = [];
+			score = 0;
+			
+			function show()
+			{
+				document.getElementById('qn').innerHTML = (qn_no+1)+'. '+ questions[qn_no];
+				document.getElementById('opt').innerHTML = 
+				'<label>'+
+				'<input type="radio" name="answer" id="test"'+
+				'value="'+ options[qn_no][0] +'" />'+
+				options[qn_no][0]+
+				'</label><br />'+
+				'<label><input type="radio" name="answer" value="'+ options[qn_no][1] +'" />'+options[qn_no][1]+'</label><br />'+
+				'<label><input type="radio" name="answer" value="'+ options[qn_no][2] +'" />'+options[qn_no][2]+'</label><br />'+
+				'<label><input type="radio" name="answer" value="'+ options[qn_no][3] +'" />'+options[qn_no][3]+'</label><br />';
+				
+				opts = document.getElementsByName('answer');
+				for(i=0; i<opts.length; i++)
+				{
+					if(opts[i].value == choices[qn_no])
+					{
+						opts[i].checked = true;
+					}
+				}
+				
+			}
+			
+			show();
+			
+			function next()
+			{
+				/*
+				getting user ckecked value except in document.forms[][] method
+				---------------------------------------------------------------
+				opts = document.getElementsByName('answer');
+				for(i=0; i<opts.length; i++)
+				{
+					if(opts[i].checked)
+					{
+						ans = opts[i].value;
+					}
+				}
+				*/
+				/* 
+				if there is only next button:-
+				---------------------------------
+				ans = document.forms['opt-form']['answer'].value;
+				
+				if(ans == answers[qn_no])
+				{
+					score++;
+				}
+				*/
+				
+				choices[qn_no] = document.forms['opt-form']['answer'].value;
+				if (qn_no <= questions.length-2)
+				{
+					qn_no++;
+					show();
+				}
+				console.log(choices);
+			}
+			
+			function prev()
+			{
+				choices[qn_no] = document.forms['opt-form']['answer'].value;
+				if(qn_no >= 1)
+				{
+					qn_no--;
+					show();
+				}
+				console.log(choices);
+			}
+			
+			function result()
+			{
+				choices[qn_no] = document.forms['opt-form']['answer'].value;
+				//????
+				alert('Your score is: '+ score);
+			}
+		</script>
+		
+	</body>
+</html>
