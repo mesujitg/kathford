@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<title>JQuery</title>
+		<meta charset="UTF-8" />
+	</head>
+	
+	<body>
+		
+		<div id="main">
+			<h1 id="test" style="position: relative;">Welcome</h1>
+			<input type="button" id="btn_hide" value="hide" />
+			<input type="button" id="btn_show" value="show" />
+		</div>
+		
+		<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+		
+		<script>
+				//$('#test').html('Welcome to JQuery');
+				//$('#test').attr('align', 'center');
+				//$('#test').css('color', 'blue');
+				//$('#test').html('Welcome to <i>JQuery</i>');
+				
+			$('#btn_hide').click(function(){
+				$('#test').hide(2000);
+				/*
+				$('#test').fadeOut(2000, function(){
+					$('#test').fadeIn(2000);
+				});
+				*/
+				//$('#test').slideUp(2000);
+				//$('#test').animate({'left': '500px'});
+				//$('#test').animate({'top': '500px'});
+			});
+			
+			$('#btn_show').click(function(){
+				//$('#test').show(2000);
+				//$('#test').fadeIn(2000);
+				//$('#test').slideDown(2000);
+				
+				$('#test').show(2000, function(){
+					$('#test').animate({'left': '500', 'top': '500px'}, function(){
+						$('#test').hide();
+					});
+				});
+				
+			});
+			
+		</script>
+		
+	</body>
+	
+</html>
