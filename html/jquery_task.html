@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<title>JQuery</title>
+		<meta charset="UTF-8" />
+	</head>
+	
+	<body>
+		
+		<div id="main">
+			<h3 id="level" style="text-align: center;"></h3>
+			<h1 id="show" style="text-align: center;"></h1>
+			
+			<p style="text-align: center;">
+				<input type="text" id="ans" style="font-size:28px; text-align:center;" readonly />
+			</p> 
+			
+			<p style="text-align: center;">
+				<button type="button" id="reset">Reset</button>
+				<button type="button" id="next">Next</button>
+			<p>
+		</div>
+		
+		<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+		
+		<script>
+			words = ['apple', 'banana', 'orange', 'pineapple', 'grapes'];
+			count = 0;
+			ans = '';
+			
+			String.prototype.shuffle = function () {
+				var a = this.split(""),
+					n = a.length;
+
+				for(var i = n - 1; i > 0; i--) {
+					var j = Math.floor(Math.random() * (i + 1));
+					var tmp = a[i];
+					a[i] = a[j];
+					a[j] = tmp;
+				}
+				return a.join("");
+			}
+
+			function showWord()
+			{
+				// shuffle the word
+				$('#level').html('Level: '+ (count+1));
+				//$('#show').html(words[count].shuffle());
+				
+				output = '';
+				shuffled = words[count].shuffle();
+				
+				for(i=0; i<shuffled.length; i++) {
+					output += '<input type="button" value="'+ shuffled[i] +
+						'" class="key"'+ 
+						'style="font-size:26px; margin: 5px 10px; width: 50px;" />';
+				}
+				
+				$('#show').html(output);
+			}
+			
+			showWord();
+			
+			$('#next').click(function(){
+				if($('#ans').val() == words[count]) {
+					$('#ans').val('');
+					count++;
+					showWord();
+					ans = '';
+				}
+				else {
+					alert('incorrect');
+					ans = '';
+					$('#ans').val('');
+					showWord();
+				}
+			});
+			
+			$('#reset').click(function(){
+				showWord();
+				ans = '';
+				$('#ans').val('');
+			});
+			
+			$('.key').click(function(){
+				ans += $(this).val();
+				$('#ans').val(ans);
+				$(this).hide();
+			});
+			
+			/*
+			function getLetter(val, el)
+			{
+				ans += val;
+				$('#ans').val(ans);
+				el.style.display = 'none';
+			}
+			*/
+			
+			/*
+				shuffled = ['a', 'p', 'p', 'l', 'e'];
+				$.each(shuffled, function(index, value){
+					output += '<input type="button" value="'+ value +'" />';
+				});
+			*/
+		</script>
+		
+	</body>
+	
+</html>
