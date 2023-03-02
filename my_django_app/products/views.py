@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse
 
 
 def show_products(request):
-    return HttpResponse('All Products')
+    return render(request, 'products.html')
 
 
 def show_product_details(request):

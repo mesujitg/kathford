@@ -1,4 +1,32 @@
-h1
+#logo
 {
-    background: green;
+    height: 80px;
+    width: 300px;
+    box-shadow: #000 5px 5px 5px;
+}
+
+#slider .carousel-item img
+{
+    height: 400px;
+}
+
+#slider .carousel-caption
+{
+    background: rgba(2, 75, 131, 0.7);
+}
+
+#latest .card img
+{
+    height: 250px;
+}
+
+footer
+{
+    background-color: darkblue;
+    margin-top: 50px !important;
+}
+
+footer .col-md-4
+{
+    margin: 20px auto;
 }
