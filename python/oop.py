@@ -57,7 +57,7 @@ Online Shopping (E-Commerce)
     Product
         name price details stock features category brand types status
         add() view() update() delete()
-    Order
+    Order, Cart, Wishlist
         user product date
 
 '''
