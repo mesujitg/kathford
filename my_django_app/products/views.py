@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from products.models import Product
+from shopping.models import Comment
 
 
 def show_products(request):
@@ -8,7 +9,7 @@ def show_products(request):
 
 
 def show_product_details(request, id):
-    products = Product.objects.filter(id=id)
+    # products = Product.objects.filter(id=id)
     product = Product.objects.get(id=id)
-    # return HttpResponse(products[0].price)
-    return HttpResponse(product.price)
+    comments = Comment.objects.filter(product_id=id)
+    return render(request, 'product_details.html', {'product': product, 'comments': comments})

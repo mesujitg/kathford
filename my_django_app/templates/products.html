@@ -15,14 +15,21 @@
         {% for p in products %}
         <div class="col-lg-3 col-md-4">
           <div class="card">
-            <img src="/media/{{ p.image }}" class="card-img-top" alt="...">
+            <a href="{% url 'single_product' id=p.id %}">
+              <img src="/media/{{ p.image }}" class="card-img-top" alt="...">
+            </a>
+            
             <div class="card-body">
-              <h5 class="card-title">{{ p.name }}</h5>
+              <h5 class="card-title">
+                <a href="{% url 'single_product' id=p.id %}">
+                  {{ p.name }}
+                </a>
+              </h5>
               <p class="card-text">NRs. {{ p.price }}</p>
-              <a href="#" class="btn btn-primary">
+              <a href="{% url 'ac' pid=p.id qty=1 %}" class="btn btn-primary">
                 <i class="bi bi-cart"></i>
               </a>
-              <a href="#" class="btn btn-danger">
+              <a href="{% url 'aw' pid=p.id %}" class="btn btn-danger">
                 <i class="bi bi-heart"></i>
               </a>
             </div>

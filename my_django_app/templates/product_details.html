@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+  <div class="row  mt-5">
+    <div class="col-md-3 bg-secondary"></div>
+
+    <div class="col-md-9">
+      <section class="row">
+
+        <div class="col-md-6">
+          <img src="/media/{{ product.image }}" alt="" 
+          style="height: 400px; width: 100%; border: 5px solid grey;">
+        </div>
+
+        <div class="col-md-6 p-5">
+          <h3>{{ product.name }}</h3>
+          <p class="m-0">{{ product.type }}</p>
+          <p class="m-0">{{ product.brand }}</p>
+          <h5><span class="text-muted">Price: </span>NRs. {{ product.price }}</h5>
+
+          <form action="{% url 'acf' %}" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+              <input type="hidden" value="{{ product.id }}" name="pid">
+              <input type="number" name="qty" class="form-control w-25" min="1">
+            </div>
+
+
+            <div class="mb-3">
+              <button type="submit" class="btn btn-primary">
+                <i class="bi bi-cart"></i> Add to Cart            
+              </button>
+            </div>
+          </form>
+
+          <div class="text">
+            {{ product.details }}
+          </div>
+        </div>
+
+        <div class="col-12">
+          <h3 class="text-center">Comments</h3>
+
+          {% for c in comments %}
+          <div class="card mb-3">
+            <div class="card-body">
+              <h5 class="card-title">{{ c.user }}</h5>
+              <p class="card-text">{{ c.comment }}</p>
+            </div>
+          </div>
+          {% endfor %}
+
+          <form action="{% url 'comment' %}" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+              <input type="hidden" value="{{ product.id }}" name="pid">
+              <textarea name="comment" id="" cols="30" rows="10" class="form-control" required></textarea>
+            </div>
+
+            <div class="mb-3">
+              <input type="submit" class="btn btn-success" value="Comment">
+            </div>
+          </form>
+        </div>
+
+      </section>
+    </div>
+  </div>
+
+{% endblock %}
