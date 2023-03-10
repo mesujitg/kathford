@@ -47,7 +47,7 @@
                   </a>
                   <ul class="dropdown-menu">
                     {% for c in categories %}
-                    <li><a class="dropdown-item" href="#">{{ c.title }}</a></li>
+                    <li><a class="dropdown-item" href="{% url 'classified_products' genre='cat' value=c.id %}">{{ c.title }}</a></li>
                     {% endfor %}
                   </ul>
                 </li>
@@ -66,8 +66,8 @@
                   </a>
                   <ul class="dropdown-menu">
                     {% if user.is_authenticated %}
-                    <li><a class="dropdown-item" href="">Wishlist</a></li>
-                    <li><a class="dropdown-item" href="">Cart</a></li>
+                    <li><a class="dropdown-item" href="{% url 'wishlist' %}">Wishlist</a></li>
+                    <li><a class="dropdown-item" href="{% url 'cart' %}">Cart</a></li>
                     <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
                     {% else %}
                     <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>

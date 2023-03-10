@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row">
+    <div class="col-12">
+        <h2 class="text-center">Checkout</h2>
+    </div>
+
+    <div class="col-md-6">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="">Mobile</label>
+                <input type="text" class="form-control" name="mobile">
+            </div>
+            <div class="mb-3">
+                <label for="">Address</label>
+                <input type="text" class="form-control" name="address">
+            </div>
+            <div class="mb-3">
+                <input type="submit" class="btn btn-primary" value="Place Order">
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-6 table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>S.N.</th>
+                    <th>Product</th>
+                    <th>Price (NRs.)</th>
+                    <th>Qty</th>
+                    <th>Discount (NRs.)</th>
+                    <th>Amount (NRs.)</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for d in data %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ d.name }}</td>
+                        <td>{{ d.price }}</td>
+                        <td>{{ d.qty }}</td>
+                        <td>{{ d.discount }}</td>
+                        <td>{{ d.amount }}</td>
+                    </tr>
+                {% endfor %}
+
+                <tr>
+                    <td colspan="5">Total</td>
+                    <td>NRs. {{ total }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="5">Delivery Charge</td>
+                    <td>NRs. 100</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+{% endblock %}

@@ -15,4 +15,8 @@ urlpatterns = [
     path('comment', views.comment, name='comment'),
     
     path('review', views.review, name='review'),
+
+    path('user_wishlist', views.show_wishlist,name='wishlist'),
+    path('user_cart', views.show_cart, name='cart'),
+    path('checkout', views.checkout, name='checkout'),
 ]

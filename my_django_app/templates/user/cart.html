@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row">
+    <div class="col-12">
+        <h2 class="text-center">Cart Items</h2>
+    </div>
+
+    <div class="col-12 table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>S.N.</th>
+                    <th>Product</th>
+                    <th>Name</th>
+                    <th>QTY</th>
+                    <th>Price</th>
+                    <th>Update</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for c in cart %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>
+                        <a href="{% url 'single_product' id=c.product.id %}">
+                            <img src="/media/{{ c.product.image }}" alt="" 
+                            style="height: 100px; width: 100px;">
+                        </a>
+                    </td>
+                    <td>{{ c.product.name }}</td>
+                    <td>
+                        <input type="number" class="form-control" value="{{ c.qty }}"
+                         style="width: 60px;" min="1">
+                    </td>
+                    <td>{{ c.product.price }}</td>
+                    <td>
+                        <a href="#" class="btn btn-secondary">
+                            <i class="bi bi-cart"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-danger">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="" class="btn btn-primary">Update Cart</a>
+        <a href="{% url 'checkout' %}" class="btn btn-success">Checkout</a>
+    </div>
+</div>
+
+{% endblock %}

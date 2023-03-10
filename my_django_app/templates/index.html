@@ -61,7 +61,12 @@
               <a href="{% url 'ac' pid=p.id qty=1 %}" class="btn btn-primary">
                 <i class="bi bi-cart"></i>
               </a>
-              <a href="{% url 'aw' pid=p.id %}" class="btn btn-danger">
+              <a class="btn btn-danger"
+              {% if user.is_authenticated %} 
+              href="{% url 'aw' pid=p.id %}"
+              {% else %} 
+              href="#" data-bs-toggle="modal" data-bs-target="#loginModal"
+              {% endif %}>
                 <i class="bi bi-heart"></i>
               </a>
             </div>
