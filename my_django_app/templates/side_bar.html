@@ -1,0 +1,30 @@
+<ul class="list-group">
+    <li class="list-group-item active" aria-current="true">Filter by Categories</li>
+    {% for sc in subcategories %}
+    <li class="list-group-item">
+        <a href="{% url 'classified_products' genre='sc' value=sc.id %}">{{ sc.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<hr />
+
+<ul class="list-group">
+    <li class="list-group-item active" aria-current="true">Filter by Types</li>
+    {% for t in types %}
+    <li class="list-group-item">
+        <a href="{% url 'classified_products' genre='type' value=t.id %}">{{ t.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<hr />
+
+<ul class="list-group">
+    <li class="list-group-item active" aria-current="true">Filter by Brands</li>
+    {% for b in brands %}
+    <li class="list-group-item">
+        <a href="{% url 'classified_products' genre='brand' value=b.id %}">{{ b.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
