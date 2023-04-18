@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'accounts',
 
     'ckeditor',
-    'ckeditor_uploader'
+    'ckeditor_uploader',
+
+    'rest_framework'
 ]
 
 MIDDLEWARE = [

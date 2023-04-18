@@ -18,6 +18,7 @@ from django.urls import path, include
 from contents import views
 from django.conf.urls.static import static
 from . import settings
+from .routers import router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +29,8 @@ urlpatterns = [
     path('products/', include('products.urls')),
     path('accounts/', include('accounts.urls')),
     path('shopping/', include('shopping.urls')),
+
+    path('api/', include(router.urls))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
